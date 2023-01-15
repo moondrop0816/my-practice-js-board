@@ -1,99 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>my board with vanilla js</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="container">
-      <h1>my board</h1>
-      <section class="form__container--post">
-        <form action="" method="get" class="form">
-          <div class="form__input--warpper">
-            <div class="form__input--name">
-              <label for="postAuther">작성자</label>
-              <input
-                type="text"
-                name="post"
-                id="postAuther"
-                required
-                placeholder="작성자"
-              />
-            </div>
-            <div class="form__input--title">
-              <label for="postTitle">제목</label>
-              <input
-                type="text"
-                name="post"
-                id="postTitle"
-                required
-                placeholder="제목"
-              />
-            </div>
-            <div class="form__input--content">
-              <label for="postContent">내용</label>
-              <textarea
-                name="post"
-                id="postContent"
-                required
-                placeholder="내용을 입력해주세요"
-              ></textarea>
+      <main>
+        <h1>my board</h1>
+        <section class="form__container--post">
+          <form action="" method="get" class="form post">
+            <div class="form__input--wrapper">
+              <div class="form__input--name">
+                <label for="postAuther">작성자</label>
+                <input
+                  type="text"
+                  name="post"
+                  id="postAuther"
+                  required
+                  placeholder="작성자"
+                />
+              </div>
+              <div class="form__input--title">
+                <label for="postTitle">제목</label>
+                <input
+                  type="text"
+                  name="post"
+                  id="postTitle"
+                  required
+                  placeholder="제목"
+                />
+              </div>
+              <div class="form__input--content">
+                <label for="postContent">내용</label>
+                <textarea
+                  name="post"
+                  id="postContent"
+                  required
+                  placeholder="내용을 입력해주세요"
+                ></textarea>
+              </div>
             </div>
             <div class="form__submit">
               <input type="submit" value="submit" />
             </div>
-          </div>
-        </form>
-      </section>
-      <section class="posts__wrapper">
-        <ul class="posts__container">
-          <li class="post__container">
-            <div class="post__avatar--wrpper">
-              <img class="post__avatar--image" src="" alt="" />
-            </div>
-            <div class="post__content--wrapper">
-              <div class="post__title--wrapper">
-                <h2 class="post__title">제목이 들어올 영역 [00]</h2>
-                <div class="post__information">
-                  작성자명 | 0000-00-00 AM 00:00
+          </form>
+        </section>
+        <section class="posts__wrapper">
+          <ul class="posts__container">
+            <li class="post__container">
+              <div class="post__content--top">
+                <div class="post__avatar--wrpper">
+                  <img
+                    class="post__avatar--image"
+                    src="http://dummyimage.com/205x100.png/ff4444/ffffff"
+                    alt="avatar of author"
+                  />
+                </div>
+                <div class="post__title--wrapper">
+                  <h2 class="post__title">제목이 들어올 영역 [00]</h2>
+                  <div class="post__information">
+                    작성자명 | 0000-00-00 AM 00:00
+                  </div>
                 </div>
               </div>
               <div class="post__content">본문이 들어올 곳</div>
-            </div>
-            <div class="post__replies--wrapper">
-              <ul class="post__replies--container">
-                <li class="post__reply">댓글이 출력될거야</li>
-              </ul>
-              <div class="form__container--reply">
-                <form action="" method="get" class="form">
-                  <div class="form__input--name">
-                    <input
-                      type="text"
-                      name="reply"
-                      id="replyAuthor"
-                      required
-                      placeholder="작성자"
-                    />
-                  </div>
-                  <div class="form__input--content">
-                    <textarea
-                      name="reply"
-                      id="replyContent"
-                      required
-                      placeholder="내용을 입력해주세요"
-                    ></textarea>
-                  </div>
-                  <div class="form__submit">
-                    <input type="submit" value="submit" />
-                  </div>
-                </form>
+              <div class="post__replies--wrapper">
+                <ul class="post__replies--container">
+                  <li class="post__reply">댓글이 출력될거야</li>
+                </ul>
+                <div class="form__container--reply">
+                  <form action="" method="get" class="form reply">
+                    <div class="form__input--wrapper">
+                      <div class="form__input--name">
+                        <input
+                          type="text"
+                          name="reply"
+                          id="replyAuthor"
+                          required
+                          placeholder="작성자"
+                        />
+                      </div>
+                      <div class="form__input--content">
+                        <textarea
+                          name="reply"
+                          id="replyContent"
+                          required
+                          placeholder="내용을 입력해주세요"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="form__submit">
+                      <input type="submit" value="submit" />
+                    </div>
+                  </form>
+                </div>
               </div>
-            </div>
-          </li>
-        </ul>
-      </section>
+            </li>
+          </ul>
+        </section>
+      </main>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
