@@ -3,3 +3,115 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+ul,
+li {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+}
+
+#container {
+  width: 100%;
+  height: 100vh;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+main {
+  width: 70%;
+  background-color: bisque;
+}
+
+h1 {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.form .form__input--wrapper {
+  flex-basis: 80%;
+}
+
+.form .form__input--wrapper div {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.form.post .form__input--wrapper input,
+.form.post .form__input--wrapper textarea {
+  flex-basis: 80%;
+}
+
+.form.reply .form__input--wrapper input,
+.form.reply .form__input--wrapper textarea {
+  width: 100%;
+}
+
+.form .form__submit {
+  flex-basis: 15%;
+}
+
+.form .form__submit input {
+  border: none;
+  background-color: cornflowerblue;
+  width: 100%;
+  height: 100%;
+  display: block;
+  padding: 10px;
+}
+
+.form__container--post {
+  background-color: cadetblue;
+  margin-bottom: 10px;
+}
+
+.posts__wrapper {
+  background-color: yellowgreen;
+}
+
+.post__container {
+  margin-bottom: 10px;
+}
+
+.post__content--top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.post__avatar--wrpper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.post__avatar--wrpper img {
+  display: block;
+  height: 100%;
+}
+
+.post__title--wrapper {
+  flex-basis: 90%;
+}
+
+.post__replies--wrapper {
+  margin-top: 10px;
+}
+
+.post__replies--container {
+  margin-bottom: 10px;
+}
