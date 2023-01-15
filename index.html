@@ -53,7 +53,7 @@
           <ul class="posts__container">
             <li class="post__container">
               <div class="post__content--top">
-                <div class="post__avatar--wrpper">
+                <div class="post__avatar--wrapper">
                   <img
                     class="post__avatar--image"
                     src="http://dummyimage.com/205x100.png/ff4444/ffffff"
@@ -61,7 +61,10 @@
                   />
                 </div>
                 <div class="post__title--wrapper">
-                  <h2 class="post__title">제목이 들어올 영역 [00]</h2>
+                  <div class="post__title">
+                    <h2>제목이 들어올 영역</h2>
+                    <span class="replies__count">[00]</span>
+                  </div>
                   <div class="post__information">
                     작성자명 | 0000-00-00 AM 00:00
                   </div>
@@ -70,7 +73,10 @@
               <div class="post__content">본문이 들어올 곳</div>
               <div class="post__replies--wrapper">
                 <ul class="post__replies--container">
-                  <li class="post__reply">댓글이 출력될거야</li>
+                  <li class="post__reply">
+                    <p class="post__reply--author"></p>
+                    <p class="post__reply--content"></p>
+                  </li>
                 </ul>
                 <div class="form__container--reply">
                   <form action="" method="get" class="form reply">

@@ -15,7 +15,6 @@ textarea {
 
 #container {
   width: 100%;
-  height: 100vh;
   background-color: aqua;
   display: flex;
   flex-direction: column;
@@ -25,6 +24,7 @@ textarea {
 
 main {
   width: 70%;
+  padding: 20px;
   background-color: bisque;
 }
 
@@ -75,6 +75,7 @@ h1 {
 .form__container--post {
   background-color: cadetblue;
   margin-bottom: 10px;
+  padding: 20px;
 }
 
 .posts__wrapper {
@@ -83,6 +84,8 @@ h1 {
 
 .post__container {
   margin-bottom: 10px;
+  padding: 20px;
+  border-bottom: 1px solid #333;
 }
 
 .post__content--top {
@@ -92,20 +95,35 @@ h1 {
   margin-bottom: 10px;
 }
 
-.post__avatar--wrpper {
+.post__avatar--wrapper {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.post__avatar--wrpper img {
+.post__avatar--wrapper img {
   display: block;
   height: 100%;
 }
 
 .post__title--wrapper {
   flex-basis: 85%;
+}
+
+.post__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.post__title h2 {
+  flex-basis: 80%;
+  height: 2.5em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .post__replies--wrapper {
