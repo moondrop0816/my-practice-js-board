@@ -111,15 +111,38 @@ const convertToBoard = (obj) => {
 
 // 배열의 데이터 렌더링하기
 const render = (element) => {
+  // 리렌더링시 모든 게시글 데이터 삭제
+  while (element.hasChildNodes()) {
+    element.removeChild(element.lastChild);
+  }
+
   for (let i = 0; i < boardData.length; i++) {
     element.append(convertToBoard(boardData[i]));
   }
-
-  return;
 };
 
 render(postsContainer);
+
 // 게시글 추가기능
+// 게시글 정보 가져오기
+const postform = document.querySelector(".form.post");
+const postAuther = document.querySelector("#postAuther");
+const postTitle = document.querySelector("#postTitle");
+const postContent = document.querySelector("#postContent");
+postform.addEventListener("submit", (event) => {
+  event.preventDefault(); // 기본 이벤트 발생
+  const obj = {
+    id: 0,
+    createdAt: new Date().toISOString(),
+    title: postTitle.value,
+    author: postAuther.value,
+    body: postContent.value,
+    avatarUrl: "http://dummyimage.com/205x100.png/ff4444/ffffff",
+    reply: false,
+  };
+  boardData.unshift(obj); // 데이터를 최신순으로 정렬
+  render(postsContainer);
+});
 // 댓글 추가기능
 // 댓글 작성시 게시글 제목 옆에 댓글 개수 등록됨
 // 날짜 형식 지정
