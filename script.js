@@ -1,5 +1,8 @@
 // ** 선언
 const postsContainer = document.querySelector(".posts__container");
+let data = localStorage.getItem("boardData")
+  ? JSON.parse(localStorage.getItem("boardData"))
+  : boardData;
 
 // 데이터를 dom으로 바꾸기
 const convertToBoard = (obj) => {
@@ -24,11 +27,9 @@ const convertToBoard = (obj) => {
   postTitle.className = "post__title";
 
   const postTitleH2 = document.createElement("h2");
-  const repliesCount = document.createElement("span");
 
   postTitleH2.textContent = obj.title;
-  repliesCount.textContent = `[${obj.reply ? obj.reply.length : 0}]`;
-  postTitle.append(postTitleH2, repliesCount);
+  postTitle.append(postTitleH2);
 
   const postInformation = document.createElement("div");
   postInformation.className = "post__information";
@@ -44,69 +45,7 @@ const convertToBoard = (obj) => {
   postContent.className = "post__content";
   postContent.textContent = obj.body;
 
-  const repliesWrapper = document.createElement("div");
-  repliesWrapper.className = "post__replies--wrapper";
-
-  const repliesContainer = document.createElement("ul");
-  repliesContainer.className = "post__replies--container";
-
-  const reply = document.createElement("li");
-  reply.className = "post__reply";
-
-  const replyAuthor = document.createElement("p");
-  replyAuthor.className = "post__reply--author";
-
-  const replyContent = document.createElement("p");
-  replyContent.className = "post__reply--content";
-
-  reply.append(replyAuthor, replyContent);
-  repliesContainer.append(reply);
-
-  const replyFormContainer = document.createElement("div");
-  replyFormContainer.className = "form__container--reply";
-
-  const replyForm = document.createElement("form");
-  replyForm.className = "form reply";
-  replyForm.method = "get";
-
-  const replyFormInputWrapper = document.createElement("div");
-  replyFormInputWrapper.className = "form__input--wrapper";
-
-  const replyFormInputName = document.createElement("div");
-  replyFormInputName.className = "form__input__name";
-
-  const replyFormInputAuthor = document.createElement("input");
-  replyFormInputAuthor.type = "text";
-  replyFormInputAuthor.name = "replyAuthor";
-  replyFormInputAuthor.placeholder = "작성자";
-
-  replyFormInputName.append(replyFormInputAuthor);
-
-  const replyFormInputContent = document.createElement("div");
-  replyFormInputContent.className = "form__input--content";
-
-  const replyInputContent = document.createElement("textarea");
-  replyInputContent.name = "replyContent";
-  replyInputContent.placeholder = "내용을 입력해주세요";
-
-  replyFormInputContent.append(replyInputContent);
-
-  replyFormInputWrapper.append(replyFormInputName, replyFormInputContent);
-
-  const replyFormSubmitWrapper = document.createElement("div");
-  replyFormSubmitWrapper.className = "form__submit";
-
-  const replyFormSubmit = document.createElement("input");
-  replyFormSubmit.type = "submit";
-  replyFormSubmit.value = "submit";
-
-  replyFormSubmitWrapper.append(replyFormSubmit);
-  replyForm.append(replyFormInputWrapper, replyFormSubmitWrapper);
-
-  replyFormContainer.append(replyForm);
-  repliesWrapper.append(replyFormContainer);
-
-  li.append(postContentTop, postContent, repliesWrapper);
+  li.append(postContentTop, postContent);
 
   return li;
 };
@@ -118,8 +57,8 @@ const render = (element) => {
     element.removeChild(element.lastChild);
   }
 
-  for (let i = 0; i < boardData.length; i++) {
-    element.append(convertToBoard(boardData[i]));
+  for (let i = 0; i < data.length; i++) {
+    element.append(convertToBoard(data[i]));
   }
 };
 
@@ -142,14 +81,13 @@ postform.addEventListener("submit", (event) => {
     avatarUrl: "http://dummyimage.com/205x100.png/ff4444/ffffff",
     reply: false,
   };
-  boardData.unshift(obj); // 데이터를 최신순으로 정렬
+
+  data.unshift(obj); // 데이터를 최신순으로 정렬
+  localStorage.setItem("boardData", JSON.stringify(data));
   render(postsContainer);
+
+  // 추가시 입력창 초기화
+  postAuther.value = "";
+  postTitle.value = "";
+  postContent.value = "";
 });
-
-// 댓글 추가기능
-// 댓글 정보 가져오기
-
-// 댓글 작성시 게시글 제목 옆에 댓글 개수 등록됨
-
-// 로컬스토리지 기능
-// 페이지네이션 기능
