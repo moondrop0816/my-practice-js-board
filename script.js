@@ -32,7 +32,9 @@ const convertToBoard = (obj) => {
 
   const postInformation = document.createElement("div");
   postInformation.className = "post__information";
-  postInformation.textContent = `${obj.author} | ${obj.createdAt}`;
+  postInformation.textContent = `${obj.author} | ${new Date(
+    obj.createdAt
+  ).toLocaleString()}`;
 
   postTitleWrapper.append(postTitle, postInformation);
 
@@ -143,8 +145,11 @@ postform.addEventListener("submit", (event) => {
   boardData.unshift(obj); // 데이터를 최신순으로 정렬
   render(postsContainer);
 });
+
 // 댓글 추가기능
+// 댓글 정보 가져오기
+
 // 댓글 작성시 게시글 제목 옆에 댓글 개수 등록됨
-// 날짜 형식 지정
+
 // 로컬스토리지 기능
 // 페이지네이션 기능
