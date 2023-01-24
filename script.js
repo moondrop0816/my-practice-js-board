@@ -1,5 +1,6 @@
 // ** 선언
 const postsContainer = document.querySelector(".posts__container");
+// 로컬스토리지에 저장된 데이터가 있으면 파싱해서 가져오고 그렇지 않으면 data.js의 데이터를 가져온다
 let data = localStorage.getItem("boardData")
   ? JSON.parse(localStorage.getItem("boardData"))
   : boardData;
@@ -51,18 +52,71 @@ const convertToBoard = (obj) => {
 };
 
 // 배열의 데이터 렌더링하기
-const render = (element) => {
+const render = (element, from, to) => {
+  console.log(from, to);
+  if (!from && !to) {
+    from = 1;
+    to = data.length - 1;
+  }
+
   // 리렌더링시 모든 게시글 데이터 삭제
   while (element.hasChildNodes()) {
     element.removeChild(element.lastChild);
   }
 
-  for (let i = 0; i < data.length; i++) {
+  for (let i = from; i < to; i += 1) {
     element.append(convertToBoard(data[i]));
   }
 };
 
-render(postsContainer);
+// 페이지네이션
+let limit = 10; // 한 페이지에 글은 10개까지만
+let page = 1;
+
+render(postsContainer, 0, limit);
+
+const getPageStartEnd = (limit, page) => {
+  const len = data.length - 1;
+  let pageStart = Number(page - 1) * Number(limit);
+  // 한 페이지에 나타날 글 중 첫번째 글의 인덱스
+  let pageEnd = Number(pageStart) + Number(limit);
+  // 한 페이지에 나타날 글 중 마지막 글의 인덱스
+  if (page <= 0) {
+    pageStart = 0; // 0이거나 음수이면 첫번째 글부터
+  }
+  if (pageEnd >= len) {
+    pageEnd = len; // 마지막 인덱스까지만 보이게 함
+  }
+  return { pageStart, pageEnd };
+};
+
+const buttons = document.querySelector(".buttons");
+buttons.children[0].addEventListener("click", () => {
+  if (page > 1) {
+    // 페이지가 1보다 크면 = 첫페이지가 아니라면
+    page = page - 1; // 한페이지씩 감소(=뒤로가기)
+  }
+  const { pageStart, pageEnd } = getPageStartEnd(limit, page);
+  render(postsContainer, pageStart, pageEnd);
+});
+
+buttons.children[1].addEventListener("click", () => {
+  if (limit * page < data.length - 1) {
+    // 보여진 글의 개수가 전체 글의 개수보다 작다면
+    page = page + 1; // 한 페이지씩 증가
+  }
+  const { pageStart, pageEnd } = getPageStartEnd(limit, page);
+  render(postsContainer, pageStart, pageEnd);
+});
+
+buttons.children[2].addEventListener("click", () => {
+  // 로컬스토리지의 데이터 초기화 하고 페이지도 초기상태로 되돌림
+  localStorage.removeItem("boardData");
+  data = boardData.slice();
+  limit = 10;
+  page = 1;
+  render(postsContainer, 0, limit);
+});
 
 // 게시글 추가기능
 // 게시글 정보 가져오기
